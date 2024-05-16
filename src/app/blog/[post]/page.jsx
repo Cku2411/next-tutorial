@@ -1,7 +1,24 @@
+"use client";
+import { useParams } from "next/navigation";
 import styles from "./singlePost.module.css";
 import Image from "next/image";
 
-const SinglePostPage = () => {
+const getData = async (slug) => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
+
+  if (!res.ok) {
+    throw new Error("Something went wrong of singlepost");
+  }
+
+  return res.json();
+};
+
+const SinglePostPage = async () => {
+  const params = useParams();
+  const post = await getData(params.post);
+
+  console.log({ post });
+
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
@@ -14,7 +31,7 @@ const SinglePostPage = () => {
       </div>
 
       <div className={styles.textContainer}>
-        <h1 className={styles.title}>Title</h1>
+        <h1 className={styles.title}>{post.title}</h1>
         <div className={styles.detail}>
           <Image
             className={styles.avatar}
@@ -36,13 +53,12 @@ const SinglePostPage = () => {
           </div>
         </div>
 
-        <div className={styles.content}>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum,
-          necessitatibus.
-        </div>
+        <div className={styles.content}>{post.body}</div>
       </div>
     </div>
   );
 };
 
 export default SinglePostPage;
+
+// 2:26
