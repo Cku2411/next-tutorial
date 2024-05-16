@@ -16,7 +16,7 @@ a {
 }
 
 .container {
-  background-color: rebeccapurple;
+  /* background-color: rebeccapurple; */
   width: 1536 px;
   margin: auto;
   padding-left: 50px;
@@ -25,4 +25,36 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@media (max-width: 1356px) {
+  .container {
+    width: 1366px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .container {
+    width: 1280px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    width: 1024px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 768px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 640px;
+  }
 }
