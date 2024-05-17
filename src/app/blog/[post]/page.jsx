@@ -1,7 +1,9 @@
 "use client";
 import { useParams } from "next/navigation";
+import PostUser from "@/components/postUser/postUser";
 import styles from "./singlePost.module.css";
 import Image from "next/image";
+import { Suspense } from "react";
 
 const getData = async (slug) => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
@@ -42,10 +44,14 @@ const SinglePostPage = async () => {
             // fill
           />
 
-          <div className={styles.detailText}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <PostUser userid={post.userId} />
+          </Suspense>
+
+          {/* <div className={styles.detailText}>
             <span className={styles.detailTitle}>Author</span>
             <span className={styles.detailValue}>JonhSon</span>
-          </div>
+          </div> */}
 
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
