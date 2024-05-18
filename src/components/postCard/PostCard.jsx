@@ -6,14 +6,20 @@ const PostCard = ({ post }) => {
   return (
     <div className={styles.container}>
       <div className={styles.top}>
-        <div className={styles.imgContainer}>
-          <Image
-            src="https://images.pexels.com/photos/21287054/pexels-photo-21287054/free-photo-of-a-city-square-with-tables-and-chairs-and-umbrellas.jpeg"
-            alt=""
-            fill
-            className={styles.img}
-          />
-        </div>
+        {post.img ? (
+          <div className={styles.imgContainer}>
+            <Image src={post.img} alt="" fill className={styles.img} />
+          </div>
+        ) : (
+          <div className={styles.imgContainer}>
+            <Image
+              src="https://images.pexels.com/photos/21287054/pexels-photo-21287054/free-photo-of-a-city-square-with-tables-and-chairs-and-umbrellas.jpeg"
+              alt=""
+              fill
+              className={styles.img}
+            />
+          </div>
+        )}
         <span className={styles.date}>15.5.2024</span>
       </div>
       <div className={styles.bottom}>
