@@ -1,31 +1,39 @@
-"use client";
-import { useParams } from "next/navigation";
+// "use client";
+// import { useParams } from "next/navigation";
+import { getPost } from "@/lib/data";
 import PostUser from "@/components/postUser/postUser";
 import styles from "./singlePost.module.css";
 import Image from "next/image";
 import { Suspense } from "react";
 
-const getData = async (slug) => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
+// const getData = async (slug) => {
+//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
 
-  if (!res.ok) {
-    throw new Error("Something went wrong of singlepost");
-  }
+//   if (!res.ok) {
+//     throw new Error("Something went wrong of singlepost");
+//   }
 
-  return res.json();
-};
+//   return res.json();
+// };
+// export const generateMetadata = async (params) => {
+//   const { slug } = params;
+//   const post = await getPost(slug);
 
-const SinglePostPage = async () => {
-  const params = useParams();
-  const post = await getData(params.post);
+//   return { title: post.title, description: post.desc };
+// };
 
+const SinglePostPage = async ({ params }) => {
+  // const params = useParams();
+  const slug = params.post;
+  const post = await getPost(slug);
   console.log({ post });
 
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <Image
-          src="https://images.pexels.com/photos/21287054/pexels-photo-21287054/free-photo-of-a-city-square-with-tables-and-chairs-and-umbrellas.jpeg"
+          // src="https://images.pexels.com/photos/21287054/pexels-photo-21287054/free-photo-of-a-city-square-with-tables-and-chairs-and-umbrellas.jpeg"
+          src={post.img}
           alt=""
           fill
           className={styles.img}
@@ -59,7 +67,7 @@ const SinglePostPage = async () => {
           </div>
         </div>
 
-        <div className={styles.content}>{post.body}</div>
+        <div className={styles.content}>{post.desc}</div>
       </div>
     </div>
   );

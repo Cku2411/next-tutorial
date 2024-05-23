@@ -22,7 +22,8 @@ export const getPost = async (slug) => {
   try {
     // connect to Db
     connecTodb();
-    const posts = await Post.find({ slug });
+    console.log(`Find Post...`);
+    const posts = await Post.findOne({ slug });
     return posts;
   } catch (error) {
     console.log(error);
@@ -35,6 +36,7 @@ export const getPosts = async () => {
     // connect to Db
     connecTodb();
     const posts = await Post.find({});
+    console.log({ posts });
     return posts;
   } catch (error) {
     console.log(error);
@@ -47,6 +49,7 @@ export const getUser = async (id) => {
     // connect to Db
     connecTodb();
     const user = await User.findById(id);
+    console.log({ user });
     return user;
   } catch (error) {
     console.log(error);

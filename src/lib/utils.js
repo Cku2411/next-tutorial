@@ -5,7 +5,7 @@ export const connecTodb = async () => {
   console.log({ t: process.env.MONGO_URL });
   console.log(`COnnect to MD`);
   try {
-    if (connection.isConnected != 1) {
+    if (connection.isConnected == 1) {
       console.log("Using existing connection");
       return;
     }
