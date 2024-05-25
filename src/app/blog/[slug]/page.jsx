@@ -5,16 +5,8 @@ import PostUser from "@/components/postUser/postUser";
 import styles from "./singlePost.module.css";
 import Image from "next/image";
 import { Suspense } from "react";
+import { getData } from "@/lib/fetchData";
 
-// const getData = async (slug) => {
-//   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
-
-//   if (!res.ok) {
-//     throw new Error("Something went wrong of singlepost");
-//   }
-
-//   return res.json();
-// };
 // export const generateMetadata = async (params) => {
 //   const { slug } = params;
 //   const post = await getPost(slug);
@@ -24,9 +16,10 @@ import { Suspense } from "react";
 
 const SinglePostPage = async ({ params }) => {
   // const params = useParams();
-  const slug = params.post;
-  const post = await getPost(slug);
-  console.log({ post });
+  const { slug } = params;
+  // const post = await getPost(slug);
+  const Posts = await getData(slug);
+  const post = Posts.find((p) => p.slug === slug);
 
   return (
     <div className={styles.container}>
