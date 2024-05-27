@@ -14,3 +14,16 @@ export const GET = async (request, { params }) => {
     throw new Error("Faild to fetch posts");
   }
 };
+
+export const DELETE = async (request, { params }) => {
+  const { slug } = params;
+  try {
+    connecTodb();
+
+    const post = await Post.deleteOne({ slug });
+    return NextResponse.json("Post deleted");
+  } catch (error) {
+    console.log(error);
+    throw new Error("Faild to delete posts");
+  }
+};

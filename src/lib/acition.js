@@ -2,6 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { Post } from "./model";
 import { connecTodb } from "./utils";
+import { signOut, signIn } from "./auth";
 
 export const addPost = async (formData) => {
   const formObj = Object.fromEntries(formData);
@@ -39,4 +40,14 @@ export const deletePost = async (formData) => {
     console.log(e);
     return { error: "something went wrong with ActionJs" };
   }
+};
+
+export const handleGithubLogin = async () => {
+  "use server";
+  await signIn("github");
+};
+
+export const handleGithubLogout = async () => {
+  "use server";
+  await signOut("github");
 };

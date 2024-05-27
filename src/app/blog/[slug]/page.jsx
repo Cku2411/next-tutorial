@@ -18,8 +18,9 @@ const SinglePostPage = async ({ params }) => {
   // const params = useParams();
   const { slug } = params;
   // const post = await getPost(slug);
-  const Posts = await getData(slug);
-  const post = Posts.find((p) => p.slug === slug);
+  const post = await getData(slug);
+  // console.log({ Posts });
+  // const post = Posts.find((p) => p.slug === slug);
 
   return (
     <div className={styles.container}>
